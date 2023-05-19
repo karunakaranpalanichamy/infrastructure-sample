@@ -1,1 +1,8 @@
-print("running from deploy script ***")
+### PYTHON NATIVE DEPENDENCIES
+import json
+
+### DEPENDENCIES TO IMPORT ON THE GH WORKFLOW
+import requests
+
+### SCRIPT SAMPLE EXECUTED THROUGH GH WORKFLOW
+print(f"inside run.py ")
