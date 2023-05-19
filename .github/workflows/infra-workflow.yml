@@ -29,7 +29,15 @@ jobs:
     steps:
       - name: promote the dependencies into dev s3
         run: echo 'inside b_promote_to_dev'
-      
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+        id: extract_branch
+      - name: Deploy
+        run: ./deploy.sh
+      - name: printing out the extract branch
+        run: echo " context object ---> ${steps.extract_branch.outputs.branch}"
+       # if: steps.extract_branch.outputs.branch == 'master'
   b_deploy_to_dev:
     runs-on: ubuntu-latest
     needs: b_validate
